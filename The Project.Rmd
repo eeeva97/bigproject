@@ -10,6 +10,7 @@ library(mosaic)
 library(Stat2Data)
 data("Cereal")
 ggplot(Cereal, aes(x=Calories, y=Sugar)) + geom_point()
+head(Cereal)
 
 ```
 
