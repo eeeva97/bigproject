@@ -11,7 +11,7 @@ library(Stat2Data)
 data("Cereal")
 ggplot(Cereal, aes(x=Calories, y=Sugar)) + geom_point()
 data(BritishUnions)
-
+head(BritishUnions)
 
 ```
 
