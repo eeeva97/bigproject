@@ -23,7 +23,7 @@ project_data <- project_data %>%
     Midwest=if_else(REGION == 21 | REGION == 22, 1, 0),
     South=if_else(REGION == 31 | REGION == 32 | REGION == 33,1,0),
     West=if_else(REGION == 41 | REGION == 42,1,0)
-  )
+  ) %>%
   mutate(
     white=if_else(RACE == 1,1,0),
     black =if_else(RACE == 2,1,0),
@@ -34,10 +34,10 @@ project_data <- project_data %>%
    otherrace=if_else(RACE==7,1,0),
    twomajor=if_else(RACE==8,1,0),
    threeormore=if_else(RACE==9,1,0)
-  )
+  ) %>%
   mutate(
-    CINETHH= as.factor(if_else())
-  )
+    CINETHH= as.factor(if_else(CINETHH == 1 | CINETHH == 2, 1,0))
+  ) 
   
 ```
 
