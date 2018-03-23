@@ -43,6 +43,9 @@ project_data <- project_data %>%
   ) %>%
   mutate(
     SSMC= as.factor(if_else(SSMC == 1 | SSMC == 2, 1,0))
+  ) %>%
+  mutate(
+    MULTGEN= as.factor(if_else(MULTGEN == 3, 1,0))
   )
 ```
 
