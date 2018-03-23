@@ -94,7 +94,7 @@ favstats(~NCHLT5, data=project_data)
 
 #Variable Analysis
 
-Race is a categorical variable that refers to the race of the person sampled. 2412703 people sampled are white (code 1), 323250 people are black (code 2), 35633 are Native American (code 3), 42220 are Chinese (code 4), 8138 are Japanese (code 5), 118510 are other Asian (code 6), 121302 are a different race that was no specified (code 7), 83415 are two major races (code 8), and 11316 are three major races (code 9). We also created indicator variables for each of these categories that we plan to use in our analysis of the data. 
+RACE is a categorical variable that refers to the race of the person sampled. 2412703 people sampled are white (code 1), 323250 people are black (code 2), 35633 are Native American (code 3), 42220 are Chinese (code 4), 8138 are Japanese (code 5), 118510 are other Asian (code 6), 121302 are a different race that was no specified (code 7), 83415 are two major races (code 8), and 11316 are three major races (code 9). We also created indicator variables for each of these categories that we plan to use in our analysis of the data. 
 
 SSMC is a binary variable that reports whether the head of household and spouse are a same-sex married couple. 3142297 of our observations were not a same-sex married couple (code 0) while 14190 were in a same-sex marriage.
 
@@ -102,5 +102,10 @@ FARM is a binary varibale that records whether or not the household in question 
 
 MULTGEN is a binary variable that indicates whether there are 3 or more generations living in the same household. 2913283 households have only one or two generations living in the same household (code 0) while 243204 households have three or more generations living in the same household (code 1).
 
+HHINCOME is a quantitative variavle that gives the total household income. Our total household income variable is a very right skewed variable, with a minimum value of -21,500 dollars, and a mean of 559,783 dollars, while the median value is 74,020 dollars. Our mean and median are quite different indicating the skew. The minimum value is notable due to its negativeness, but we have concluded that some people have negative household income due to debt.  
 
+NCHLT5 is a quantitative variable that gives the number of children age 4 and under residing in the household. Number of Own Children under 5 is also a very right skewed variable, with a mode at 0. This makes logical sense, only a few people have children under the age of 5. The median is 0 while the mean is .0883. The max value is 8, which is quite a lot of children under 5!
 
+CINETHH is a binary variable that indicates whether the household has internet access.Internet access reports whether the household has access to the internet. In 2016, 2,687,693 households have internet access or 85% of households surveyed.
+
+Northeast, Midwest, South, and West are all binary variables that indicate the four United States regions as divided by the census. The survey finds 558073 people in the Northeast or 17.6%. The survey finds 21.5% of people in the Midwest. The South has 37.3% of people, while the West has 23.4% of people. 
