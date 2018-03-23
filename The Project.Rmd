@@ -28,17 +28,22 @@ project_data <- project_data %>%
     white=if_else(RACE == 1,1,0),
     black =if_else(RACE == 2,1,0),
     nativeamerican=if_else(RACE==3,1,0),
-   chinese=if_else(RACE==4,1,0),
-   japanese=if_else(RACE==5,1,0),
-   otherasian=if_else(RACE==6,1,0),
-   otherrace=if_else(RACE==7,1,0),
-   twomajor=if_else(RACE==8,1,0),
-   threeormore=if_else(RACE==9,1,0)
+    chinese=if_else(RACE==4,1,0),
+    japanese=if_else(RACE==5,1,0),
+    otherasian=if_else(RACE==6,1,0),
+    otherrace=if_else(RACE==7,1,0),
+    twomajor=if_else(RACE==8,1,0),
+    threeormore=if_else(RACE==9,1,0)
   ) %>%
   mutate(
     CINETHH= as.factor(if_else(CINETHH == 1 | CINETHH == 2, 1,0))
-  ) 
-  
+  ) %>%
+  mutate(
+    FARM= as.factor(if_else(FARM == 2, 1,0))
+  ) %>%
+  mutate(
+    SSMC= as.factor(if_else(SSMC == 1 | SSMC == 2, 1,0))
+  )
 ```
 
 ```{r}
@@ -49,8 +54,10 @@ tally(~West, data=project_data)
 tally(~RACE, data=project_data)
 tally(~SSMC, data=project_data)
 tally(~FARM, data=project_data)
+tally(~CINETHH, data=project_data)
 favstats(~HHINCOME, data=project_data)
 favstats(~NCHLT5, data=project_data)
+
 
 
 ```
