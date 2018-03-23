@@ -9,6 +9,7 @@ library(ipumsr)
 library(mosaic)
 library(Stat2Data)
 library(dplyr)
+library(ggplot2)
 setwd("~/Desktop")
 
 project_ddi <- read_ipums_ddi("usa_00004.xml")
@@ -48,12 +49,36 @@ project_data <- project_data %>%
     MULTGEN= as.factor(if_else(MULTGEN == 3, 1,0))
   ) %>%
   select(PERNUM, SERIAL, Northeast, Midwest, South, West, RACE, SSMC, FARM, CINETHH, MULTGEN, HHINCOME, NCHLT5, white, black, nativeamerican, chinese, japanese, otherasian, otherrace, twomajor, threeormore)
-
+str(project_data, give.attr = FALSE)
 ```
+#Structure and Names
+
+There are 3156487 observations of 22 variables.
+
+Pernum is the person number in the sample unit.
+Serial is the household serial number.
+Northeast indicates if the household is in the Northeast.
+Midwest indictates if the household is in the Midwest.
+South indictates if the household is in the South.
+West indictates if the household is in the West.
+Race gives a numerical code for the race of the head of household.
+White indicates if the head of household is white.
+Black indicates if the head of household is black. 
+Nativeamerican indicates if the head of household is native american. 
+Chinese indicates if the head of household is chinese. 
+Japanese indicates if the head of household is japanese. 
+Otherasian indicates if the head of household is not chinese or japanese but still asian. 
+Otherrace indicates if the head of household is a race not already specified. 
+Twomajor indicates if the head of household is a mix of two races. 
+Threeormore indicates if the head of household is a mix of three or more races.    
+SSMC reports whether the head of household and spouse are a same-sex married couple.
+FARM identifies farm households. 
+CINETHH indicates whether the household has internet access.
+MULTGEN indicates whether there are 3 or more generations living in the same household.
+HHINCOME gives the total household income.
+NCHLT5 give the number of children age 4 and under residing in the household.
 
 ```{r}
-str(project_data, give.attr = FALSE)
-
 tally(~Northeast, data=project_data)
 tally(~Midwest, data=project_data)
 tally(~South, data=project_data)
@@ -66,4 +91,16 @@ tally(~MULTGEN, data=project_data)
 favstats(~HHINCOME, data=project_data)
 favstats(~NCHLT5, data=project_data)
 ```
+
+#Variable Analysis
+
+Race is a categorical variable that refers to the race of the person sampled. 2412703 people sampled are white (code 1), 323250 people are black (code 2), 35633 are Native American (code 3), 42220 are Chinese (code 4), 8138 are Japanese (code 5), 118510 are other Asian (code 6), 121302 are a different race that was no specified (code 7), 83415 are two major races (code 8), and 11316 are three major races (code 9). We also created indicator variables for each of these categories that we plan to use in our analysis of the data. 
+
+SSMC is a binary variable that reports whether the head of household and spouse are a same-sex married couple. 3142297 of our observations were not a same-sex married couple (code 0) while 14190 were in a same-sex marriage.
+
+FARM is a binary varibale that records whether or not the household in question lives on a farm. 3119081 households are not located on a farm (code 0) while 37406 households are on a farm (code 1).
+
+MULTGEN is a binary variable that indicates whether there are 3 or more generations living in the same household. 2913283 households have only one or two generations living in the same household (code 0) while 243204 households have three or more generations living in the same household (code 1).
+
+
 
