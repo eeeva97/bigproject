@@ -57,8 +57,5 @@ tally(~FARM, data=project_data)
 tally(~CINETHH, data=project_data)
 favstats(~HHINCOME, data=project_data)
 favstats(~NCHLT5, data=project_data)
-
-
-
 ```
 
