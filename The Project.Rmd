@@ -26,3 +26,10 @@ project_data <- project_data %>%
   )
 ```
 
+```{r}
+tally(~Northeast, data=project_data)
+tally(~Midwest, data=project_data)
+tally(~South, data=project_data)
+tally(~West, data=project_data)
+```
+
