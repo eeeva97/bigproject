@@ -46,10 +46,14 @@ project_data <- project_data %>%
   ) %>%
   mutate(
     MULTGEN= as.factor(if_else(MULTGEN == 3, 1,0))
-  )
+  ) %>%
+  select(PERNUM, SERIAL, Northeast, Midwest, South, West, RACE, SSMC, FARM, CINETHH, MULTGEN, HHINCOME, NCHLT5, white, black, nativeamerican, chinese, japanese, otherasian, otherrace, twomajor, threeormore)
+
 ```
 
 ```{r}
+str(project_data, give.attr = FALSE)
+
 tally(~Northeast, data=project_data)
 tally(~Midwest, data=project_data)
 tally(~South, data=project_data)
@@ -58,6 +62,7 @@ tally(~RACE, data=project_data)
 tally(~SSMC, data=project_data)
 tally(~FARM, data=project_data)
 tally(~CINETHH, data=project_data)
+tally(~MULTGEN, data=project_data)
 favstats(~HHINCOME, data=project_data)
 favstats(~NCHLT5, data=project_data)
 ```
