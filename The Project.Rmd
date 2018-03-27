@@ -59,3 +59,7 @@ favstats(~HHINCOME, data=project_data)
 favstats(~NCHLT5, data=project_data)
 ```
 
+```{r}
+ggplot(project_data, aes(x=NCHLT5)) + geom_histogram()
+```
+Income, Children, Internet, Region
