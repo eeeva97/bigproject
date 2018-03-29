@@ -46,7 +46,17 @@ project_data <- project_data %>%
   mutate(
     MULTGEN= as.factor(if_else(MULTGEN == 3, 1,0))
   ) %>%
-  select(PERNUM, SERIAL, Northeast, Midwest, South, West, AGE, RACE, SSMC, FARM, CINETHH, MULTGEN, HHINCOME, NCHLT5, white, black, nativeamerican, asian, otherrace, twoormore)
+  select(PERNUM, SERIAL, Northeast, Midwest, South, West, AGE, RACE, SSMC, FARM, CINETHH, MULTGEN, HHINCOME, NCHLT5, white, black, nativeamerican, asian, otherrace, twoormore, NUMPREC)
 str(project_data, give.attr = FALSE)
+```
+#Tertiary Question
+```{r}
+tertiarydata <- project_data %>%
+  filter(MULTGEN == 1)
+
+
+
+modeltertiary <- lm(HHINCOME~NUMPREC + Midwest*AGE + South*AGE + West*AGE + AGE + FARM + NCHLT5 + black*NUMPREC + nativeamerican*NUMPREC + asian*NUMPREC + otherrace*NUMPREC + twoormore*NUMPREC + CINETHH + SSMC, data=tertiarydata)
+summary(modeltertiary)
 ```
 
