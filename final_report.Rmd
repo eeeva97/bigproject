@@ -1,7 +1,52 @@
+---
+title: "Final Report"
+author: "Hazel Ethier and Eva Gerstle"
+date: "3/27/2018"
+output: pdf_document
+---
+```{r include=FALSE}
+library(tidyverse)
+library(ipumsr)
+library(mosaic)
+library(Stat2Data)
+library(dplyr)
+library(ggplot2)
+setwd("~/Desktop")
 
-title: Final Report
-author: Hazel Ethier and Eva Gerstle
+project_ddi <- read_ipums_ddi("usa_00005.xml")
+project_data <- read_ipums_micro(project_ddi, verbose = FALSE)
 
+```
 
-
+```{r}
+project_data <- project_data %>%
+  mutate(
+    Northeast=if_else(REGION == 11 | REGION == 12, 1 ,0),
+    Midwest=if_else(REGION == 21 | REGION == 22, 1, 0),
+    South=if_else(REGION == 31 | REGION == 32 | REGION == 33,1,0),
+    West=if_else(REGION == 41 | REGION == 42,1,0)
+  ) %>%
+  mutate(
+    white=if_else(RACE == 1,1,0),
+    black =if_else(RACE == 2,1,0),
+    nativeamerican=if_else(RACE==3,1,0),
+    asian=if_else(RACE==4 | RACE==5 | RACE==6,1,0),
+    otherrace=if_else(RACE==7,1,0),
+    twoormore=if_else(RACE==8 | RACE == 9,1,0)
+  ) %>%
+  mutate(
+    CINETHH= as.factor(if_else(CINETHH == 1 | CINETHH == 2, 1,0))
+  ) %>%
+  mutate(
+    FARM= as.factor(if_else(FARM == 2, 1,0))
+  ) %>%
+  mutate(
+    SSMC= as.factor(if_else(SSMC == 1 | SSMC == 2, 1,0))
+  ) %>%
+  mutate(
+    MULTGEN= as.factor(if_else(MULTGEN == 3, 1,0))
+  ) %>%
+  select(PERNUM, SERIAL, Northeast, Midwest, South, West, AGE, RACE, SSMC, FARM, CINETHH, MULTGEN, HHINCOME, NCHLT5, white, black, nativeamerican, asian, otherrace, twoormore)
+str(project_data, give.attr = FALSE)
+```
 
