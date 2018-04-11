@@ -77,8 +77,6 @@ justincomeplot
 m1 <- lm(HHINCOME~NUMPREC, data=tertiarydata)
 summary(m1)
 
-
-
 modeltertiary <- lm(HHINCOME~NUMPREC + Midwest*NUMPREC + South*NUMPREC + West*NUMPREC + AGE + FARM + NCHLT5 + black*NUMPREC + nativeamerican*NUMPREC + asian*NUMPREC + otherrace*NUMPREC + twoormore*NUMPREC + CINETHH + SSMC, data=tertiarydata)
 modeltertiarysmall <- lm(HHINCOME~NUMPREC + Midwest*NUMPREC + South*NUMPREC + West*NUMPREC, data=tertiarydata)
 anova(modeltertiarysmall, modeltertiary)
