@@ -58,11 +58,11 @@ summary(primarymodel)
 
 #Secondary Question
 ```{r}
-secondarymodel <- glm(MULTGEN ~ HHINCOME, family=binomial, data = project_data)
-```
-```{r}
+secondarymodel <- glm(MULTGEN ~ HHINCOME + AGE + NUMPREC + black + nativeamerican + asian + twoormore + otherrace , family=binomial, data = project_data)
+secondarymodelextra <- glm(MULTGEN ~ HHINCOME + AGE + NUMPREC + black + nativeamerican + asian + twoormore + otherrace, family=binomial, data = project_data)
 summary(secondarymodel)
-exp(coef(secondarymodel))
+summary(secondarymodelextra)
+
 ```
 
 #Tertiary Question
