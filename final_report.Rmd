@@ -49,10 +49,10 @@ project_data <- project_data %>%
   select(PERNUM, SERIAL, Northeast, Midwest, South, West, AGE, RACE, SSMC, FARM, CINETHH, MULTGEN, HHINCOME, NCHLT5, white, black, nativeamerican, asian, otherrace, twoormore, NUMPREC)
 str(project_data, give.attr = FALSE)
 ```
-#Primary and Secondary Question 
+#Primary Question 
 
 ```{r}
-primarymodel <- glm(MULTGEN ~ West + Midwest + South, family=binomial, data = project_data)
+primarymodel <- glm(MULTGEN ~ West + Midwest + South + AGE + HHINCOME + NUMPREC + NCHLT5 + NUMPREC*NCHLT5 + FARM + black + nativeamerican + asian +otherrace + twoormore , family=binomial, data = project_data)
 summary(primarymodel)
 ```
 
