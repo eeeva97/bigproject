@@ -3,7 +3,11 @@ title: "Final Report"
 author: "Hazel Ethier and Eva Gerstle"
 date: "3/27/2018"
 output: pdf_document
+    number_sections: true
+    toc: true
+fontsize: 12pt
 ---
+
 ```{r include=FALSE}
 library(tidyverse)
 library(ipumsr)
@@ -49,14 +53,23 @@ project_data <- project_data %>%
   select(PERNUM, SERIAL, Northeast, Midwest, South, West, AGE, RACE, SSMC, FARM, CINETHH, MULTGEN, HHINCOME, NCHLT5, white, black, nativeamerican, asian, otherrace, twoormore, NUMPREC)
 str(project_data, give.attr = FALSE)
 ```
-#Primary Question 
+#Introduction
+
+#Methods
+
+#Results
+
+##Primary Question 
 
 ```{r}
 primarymodel <- glm(MULTGEN ~ West + Midwest + South + AGE + HHINCOME + NUMPREC + NCHLT5 + NUMPREC*NCHLT5 + FARM + black + nativeamerican + asian +otherrace + twoormore , family=binomial, data = project_data)
 summary(primarymodel)
 ```
+```{r}
+exp(coef(primarymodel))
+```
 
-#Secondary Question
+##Secondary Question
 ```{r}
 secondarymodel <- glm(MULTGEN ~ HHINCOME, family=binomial, data = project_data)
 ```
@@ -65,7 +78,7 @@ summary(secondarymodel)
 exp(coef(secondarymodel))
 ```
 
-#Tertiary Question
+##Tertiary Question
 ```{r}
 tertiarydata <- project_data %>%
   filter(MULTGEN == 1)
@@ -84,3 +97,5 @@ anova(modeltertiarysmall, modeltertiary)
 #summary(modeltertiary)
 
 ```
+
+#Discussion
