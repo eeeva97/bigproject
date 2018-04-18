@@ -54,8 +54,13 @@ project_data <- project_data %>%
 str(project_data, give.attr = FALSE)
 ```
 #Introduction
+Our model concludes that intergenerational household, defined as households with three or more generations living under the same roof, living in different regions of the United States, have statistically different incomes.
 
 #Methods
+Run likihood test with extra variables
+
+
+In order to test our model, we removed our variables one at a time, and ran various nested F tests, finding that each time, the full model (the tertiary model with the confounding variables included) was needed.  Thus we interpreted our variables adjusting for race, internet access, same-sex relationship status, age, number of children under 5, and farm status.
 
 #Results
 
