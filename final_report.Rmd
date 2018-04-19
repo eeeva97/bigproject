@@ -8,7 +8,7 @@ output: pdf_document
 fontsize: 12pt
 ---
 
-```{r include=FALSE}
+```{r include=FALSE, message=FALSE}
 library(tidyverse)
 library(ipumsr)
 library(mosaic)
@@ -60,7 +60,7 @@ Our model concludes that intergenerational household, defined as households with
 Run likihood test with extra variables
 
 
-In order to test our model, we removed our variables one at a time, and ran various nested F tests, finding that each time, the full model (the tertiary model with the confounding variables included) was needed.  Thus we interpreted our variables adjusting for race, internet access, same-sex relationship status, age, number of children under 5, and farm status.
+In order to test our model, we removed our variables one at a time, and ran various nested F tests, finding that each time, the full model the tertiary model with the confounding variables included was needed.  Thus we interpreted our variables adjusting for race, internet access, same-sex relationship status, age, number of children under 5, and farm status.
 
 #Results
 
@@ -75,16 +75,9 @@ exp(coef(primarymodel))
 ```
 
 ##Secondary Question
-```{r}
-secondarymodel <- glm(MULTGEN ~ HHINCOME + AGE + NUMPREC + black + nativeamerican + asian + twoormore + otherrace , family=binomial, data = project_data)
-secondarymodelextra <- glm(MULTGEN ~ HHINCOME + AGE + NUMPREC + black + nativeamerican + asian + twoormore + otherrace, family=binomial, data = project_data)
-summary(secondarymodel)
-summary(secondarymodelextra)
-
-```
 
 ##Tertiary Question
-```{r}
+```{r, echo=FALSE}
 tertiarydata <- project_data %>%
   filter(MULTGEN == 1)
 
