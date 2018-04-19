@@ -74,7 +74,32 @@ summary(primarymodel)
 exp(coef(primarymodel))
 ```
 
+\textbf{Northeast}:
+The odds, on average, of a household in the Northeast has being intergenerational are 0.00142, controlling for the variables above.
+The probability of a household in the Northeast being intergenerational is .1418%, adjusting for the variables above.
+\textbf{West}:
+The odds, on average, of a household in the West being intergenerational are .001445, adjusting for the variables above. 
+A household in the West has, on average, 1.0163 times the odds of being intergenerational than a household in the Northeast, controlling for the variables above.
+The probability of a household in the West being intergenerational .144265%, adjusting for the variables above.
+\textbf{Midwest}:
+The odds, on average, of a household in the Midwest being intergenerational are .001095, adjusting for the variables above. 
+A household in the Midwest has, on average, 0.7705 times the odds of being intergenerational than a household in the Northeast, controlling for the variables above.
+The probability of a household in the Midwest being intergenerational is .1094%, adjusting for the variables above.
+\textbf{South}:
+The odds, on average, of a household in the South being intergenerational is .001597, adjusting for the variables above.
+A household in the South has, on average, 1.123 times the odds of being intergenerational than a household in the Northeast, controlling for the variables above.
+The probability of a household in the South being intergenerational is .1594%, adjusting for the variables above.
+
+Our multiple logistic regression with 3156472 degrees of freedom, gives us high z-values for the categorical variable region of 2.126, -30.796, and 16.388 and low p-values of 0.0335, <.001, and <.001 for West, Midwest, and South, respectively. Based on these low p-values (below our chosen alpha level of 0.05), we can reject the null hypothesis that there is no relationship between region and odds of being an intergenerational household. We have evidence that there is a statistically significant relationship between region and odds of an household being intergenerational, controlling for the set variables. 
+
 ##Secondary Question
+
+For every increase of \$1 in total household income, on average, we see a change of 0.999999386900188 times the odds of living in a intergenerational household, adjusting for age, region, number of people, number of children under 5, living on a farm, race, and the interaction between number of people and number of people under 5. 
+
+For an increase of \$100,000 of total household income, on average, the family is 6% less likely to be intergenerational compared to a family with who earns \$100,000 less, holding age, region, number of people, number of children under 5, living on a farm, race, and the interaction between number of people and number of people under 5 constant. 
+
+Based on our multiple logistic regression with 3156472 degrees of freedom, we obtain a high z-value of -25.591 and p-value of <0.001 for the coefficient for household income. Since the p-value is below our alpha level of 0.05, we can reject our null hypothesis that there is no relationship between income and odds of a household being intergenerational. This test provides evidence that there is a statistically significant relationship between household income and odds of a household being intergenerational. 
+
 
 ##Tertiary Question
 ```{r, echo=FALSE}
