@@ -2,7 +2,8 @@
 title: "Final Report"
 author: "Hazel Ethier and Eva Gerstle"
 date: "3/27/2018"
-output: pdf_document
+output: 
+  pdf_document:
     number_sections: true
     toc: true
 fontsize: 12pt
@@ -22,7 +23,7 @@ project_data <- read_ipums_micro(project_ddi, verbose = FALSE)
 
 ```
 
-```{r}
+```{r, echo=FALSE}
 project_data <- project_data %>%
   mutate(
     Northeast=if_else(REGION == 11 | REGION == 12, 1 ,0),
@@ -66,13 +67,14 @@ In order to test our model, we removed our variables one at a time, and ran vari
 
 ##Primary Question 
 
-```{r}
+```{r, echo= FALSE}
 primarymodel <- glm(MULTGEN ~ West + Midwest + South + AGE + HHINCOME + NUMPREC + NCHLT5 + NUMPREC*NCHLT5 + FARM + black + nativeamerican + asian +otherrace + twoormore , family=binomial, data = project_data)
 summary(primarymodel)
 ```
 ```{r}
 exp(coef(primarymodel))
 ```
+Primary and Secondary Model: logit(multigen households) = -6.556 + 0.01617West - 0.2607Midwest + 0.1161South + 0.01753Age - 0.0000006131HHIncome + 0.8208NUMPREC + 0.3983NCHLT5 - 0.9717Farm + 0.7618black + 0.5277nativeamerican +0.5699asian +0.2464otherrace +0.4827twoormore - 0.175NUMPREC*NCHLT5
 
 \textbf{Northeast}:
 The odds, on average, of a household in the Northeast has being intergenerational are 0.00142, controlling for the variables above.
@@ -106,19 +108,16 @@ Based on our multiple logistic regression with 3156472 degrees of freedom, we ob
 tertiarydata <- project_data %>%
   filter(MULTGEN == 1)
 
-
-justincomeplot <- ggplot(tertiarydata, aes(x=NUMPREC, y= HHINCOME)) + geom_jitter(alpha =.1, color ="blue") 
-justincomeplot
-
-m1 <- lm(HHINCOME~NUMPREC, data=tertiarydata)
-summary(m1)
-
 modeltertiary <- lm(HHINCOME~NUMPREC + Midwest*NUMPREC + South*NUMPREC + West*NUMPREC + AGE + FARM + NCHLT5 + black*NUMPREC + nativeamerican*NUMPREC + asian*NUMPREC + otherrace*NUMPREC + twoormore*NUMPREC + CINETHH + SSMC, data=tertiarydata)
-modeltertiarysmall <- lm(HHINCOME~NUMPREC + Midwest*NUMPREC + South*NUMPREC + West*NUMPREC, data=tertiarydata)
-anova(modeltertiarysmall, modeltertiary)
-#summary(modeltertiarysmall)
-#summary(modeltertiary)
+summary(modeltertiary)
 
 ```
+
+In our regression analysis of our tertiary model, we found that the interaction terms between number of people living in the household and region are statistically significant, on 243181 degrees of freedom. With p-values below .05, we can conclude that the slopes of our linear regression (number of people predicating income within intergenerational households) vary by region. 
+
+For an intergenerational household living in the Northeast, (Connecticut, Maine, Massachusetts, New Hampshire, Rhode Island, Vermont, New Jersey, New York, Pennsylvania), with 3 people (the minimum number required to have an intergenerational household), the predicted annual household income is \$50346.082. With each additional household member, in the Northeast, income is predicted to increase by $10386.652, adjusted for the variables above. 
+Whereas for intergenerational household living in the Midwest (Illinois, Indiana, Michigan, Ohio, Wisconsin, Iowa, Kansas, Minnesota, Missouri, Nebraska, North Dakota, South Dakota) with 3 people, the predicted annual household income is \$37730.064. With each additional household member, income is predicated to raise by \$5856.693, adjusted for the variables above.
+In the South, (Delaware, District of Columbia, Florida, Georgia, Maryland, North Carolina, South Carolina, Virginia, West Virginia, Alabama, Kentucky, Mississippi, Tennessee, Arkansas, Louisiana, Oklahoma, Texas) for intergenerational households with 3 people, the predicted annual household income is \$38528.84. With each additional household member, income is predicated to raise by \$5844.596, adjusted for the variables above. 
+Out in the Western States (Arizona, Colorado, Idaho, Montana, Nevada, New Mexico, Utah, Wyoming, Alaska, California, Hawaii, Oregon, Washington), intergenerational households with 3 people have a predicated annual household income of \$42643.982, With each additional household member, income is predicated to raise by \$7931.779, adjusted for the variables above. 
 
 #Discussion
