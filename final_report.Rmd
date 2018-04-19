@@ -58,8 +58,11 @@ str(project_data, give.attr = FALSE)
 ```
 #Introduction
 In our final project, we chose to analyze a type of household that makes up about 1% of all households in the United States.1 Intergenerational households, defined as households with three or more generations living under the same roof, are a diverse and complicated subset of our population. We began our research with two distinct interests. Our first model seeks to predicate the odds of a person living in an intergenerational household given a set of demographic attributes. Our second model focused on trends within intergenerational households. 
+
  We sought to answer two questions with our first model. Our primary question revolved around region that the household lives within. The United States Census divides the country into 4 regions: Northeast (Connecticut, Maine, Massachusetts, New Hampshire, Rhode Island, Vermont, New Jersey, New York, Pennsylvania), Midwest (Illinois, Indiana, Michigan, Ohio, Wisconsin, Iowa, Kansas, Minnesota, Missouri, Nebraska, North Dakota, South Dakota), South (Delaware, District of Columbia, Florida, Georgia, Maryland, North Carolina, South Carolina, Virginia, West Virginia, Alabama, Kentucky, Mississippi, Tennessee, Arkansas, Louisiana, Oklahoma, Texas), and West (Arizona, Colorado, Idaho, Montana, Nevada, New Mexico, Utah, Wyoming, Alaska, California, Hawaii, Oregon, Washington). 2 We set out to assess whether the odds of living in a intergenerational household varied by region, adjusting for various variables. Our null hypothesis was that region had no effect on the odds of being an intergenerational household. We found that different regions do have statistically different odds of living in intergenerational households. 
-Our second question examined the relationship between income and odds of living in an intergenerational household. We used total household income as our main explanatory variable, adjusted for various confounding variables, and found the odds of living in an intergenerational household as our response variable. Our null hypothesis was that income had no impact on the odds of being an intergenerational household. We found that there is a statistically significant, negative relationship between income and odds of living an intergenerational household, but the relationship between income and logit(odds) was quite shallow: large changes in income only resulted in small changes in odds of being an intergenerational household. 
+ 
+Our second question examined the relationship between income and odds of living in an intergenerational household. We used total household income as our main explanatory variable, adjusted for various confounding variables, and found the odds of living in an intergenerational household as our response variable. Our null hypothesis was that income had no impact on the odds of being an intergenerational household. We found that there is a statistically significant, negative relationship between income and odds of living an intergenerational household, but the relationship between income and logit(odds) was quite shallow: large changes in income only resulted in small changes in odds of being an intergenerational household.
+
 Our third question looks within intergenerational households, a subset of the United States Population about 30 million in number.1 Within these intergenerational households, we sought to assess if there were differences in household incomes in different regions of the country. Using the same Census region as above, we utilized region as a explanatory variable predicting income of the intergenerational household. Our null hypothesis was that region was not correlated with income within intergenerational households. Our model concludes that intergenerational households living in different regions of the United States, have statistically different incomes.
 
 
@@ -94,21 +97,14 @@ kable(oddsdf, "html") %>%
 
 ```
 
-\textbf{Northeast}:
-The odds, on average, of a household in the Northeast has being intergenerational are 0.00142, controlling for the variables above.
-The probability of a household in the Northeast being intergenerational is .1418%, adjusting for the variables above.
-\textbf{West}:
-The odds, on average, of a household in the West being intergenerational are .001445, adjusting for the variables above. 
 A household in the West has, on average, 1.0163 times the odds of being intergenerational than a household in the Northeast, controlling for the variables above.
-The probability of a household in the West being intergenerational .144265%, adjusting for the variables above.
-\textbf{Midwest}:
-The odds, on average, of a household in the Midwest being intergenerational are .001095, adjusting for the variables above. 
+
+
 A household in the Midwest has, on average, 0.7705 times the odds of being intergenerational than a household in the Northeast, controlling for the variables above.
-The probability of a household in the Midwest being intergenerational is .1094%, adjusting for the variables above.
-\textbf{South}:
-The odds, on average, of a household in the South being intergenerational is .001597, adjusting for the variables above.
+
+
 A household in the South has, on average, 1.123 times the odds of being intergenerational than a household in the Northeast, controlling for the variables above.
-The probability of a household in the South being intergenerational is .1594%, adjusting for the variables above.
+
 
 Our multiple logistic regression with 3156472 degrees of freedom, gives us high z-values for the categorical variable region of 2.126, -30.796, and 16.388 and low p-values of 0.0335, <.001, and <.001 for West, Midwest, and South, respectively. Based on these low p-values (below our chosen alpha level of 0.05), we can reject the null hypothesis that there is no relationship between region and odds of being an intergenerational household. We have evidence that there is a statistically significant relationship between region and odds of an household being intergenerational, controlling for the set variables. 
 
@@ -137,12 +133,16 @@ summary(modeltertiary)
 
 ```
 
-In our regression analysis of our tertiary model, we found that the interaction terms between number of people living in the household and region are statistically significant, on 243181 degrees of freedom. With p-values below .05, we can conclude that the slopes of our linear regression (number of people predicating income within intergenerational households) vary by region. 
+In our regression analysis of our tertiary model, we found that the interaction terms between number of people living in the household and region are statistically significant, on 243,181 degrees of freedom. With p-values below .05, we can conclude that the slopes of our linear regression (number of people predicating income within intergenerational households) vary by region. 
 
-For an intergenerational household living in the Northeast, (Connecticut, Maine, Massachusetts, New Hampshire, Rhode Island, Vermont, New Jersey, New York, Pennsylvania), with 3 people (the minimum number required to have an intergenerational household), the predicted annual household income is \$50346.082. With each additional household member, in the Northeast, income is predicted to increase by $10386.652, adjusted for the variables above. 
-Whereas for intergenerational household living in the Midwest (Illinois, Indiana, Michigan, Ohio, Wisconsin, Iowa, Kansas, Minnesota, Missouri, Nebraska, North Dakota, South Dakota) with 3 people, the predicted annual household income is \$37730.064. With each additional household member, income is predicated to raise by \$5856.693, adjusted for the variables above.
-In the South, (Delaware, District of Columbia, Florida, Georgia, Maryland, North Carolina, South Carolina, Virginia, West Virginia, Alabama, Kentucky, Mississippi, Tennessee, Arkansas, Louisiana, Oklahoma, Texas) for intergenerational households with 3 people, the predicted annual household income is \$38528.84. With each additional household member, income is predicated to raise by \$5844.596, adjusted for the variables above. 
-Out in the Western States (Arizona, Colorado, Idaho, Montana, Nevada, New Mexico, Utah, Wyoming, Alaska, California, Hawaii, Oregon, Washington), intergenerational households with 3 people have a predicated annual household income of \$42643.982, With each additional household member, income is predicated to raise by \$7931.779, adjusted for the variables above. 
+For an intergenerational household living in the Northeast, with 3 people (the minimum number required to have an intergenerational household), the predicted annual household income is \$50346.082. With each additional household member, in the Northeast, income is predicted to increase by $10386.652, adjusted for the variables above. 
+
+Whereas for intergenerational household living in the Midwest with 3 people, the predicted annual household income is \$37730.064. With each additional household member, income is predicated to raise by \$5856.693, adjusted for the variables above.
+
+In the South, for intergenerational households with 3 people, the predicted annual household income is \$38528.84. With each additional household member, income is predicated to raise by \$5844.596, adjusted for the variables above. 
+
+Out in the Western States intergenerational households with 3 people have a predicated annual household income of \$42643.982, With each additional household member, income is predicated to raise by \$7931.779, adjusted for the variables above. 
+
 ```{r}
 tertiarydf= data.frame(Region = c("Northeast", "West", "Midwest", "South"), Income3people = c(50346.082, 42643.982,37730.064,38528.84))
 incomeplot <- ggplot(tertiarydf, aes(x=Region, y=Income3people, fill = Region)) + geom_bar(stat="identity") + guides(fill =FALSE)
@@ -156,7 +156,7 @@ intercepts <- c(coef(modeltertiary)["(Intercept)"],
 slopes <- c(coef(modeltertiary)["NUMPREC"],
                 coef(modeltertiary)["NUMPREC"] + coef(modeltertiary)["NUMPREC:West"],
                 coef(modeltertiary)["NUMPREC"] + coef(modeltertiary)["NUMPREC:Midwest"],
-                coef(modeltertiary)["NUMPREC"] + coef(m2)["NUMPREC:South"])
+                coef(modeltertiary)["NUMPREC"] + coef(modeltertiary)["NUMPREC:South"])
 
 project_data.df <- data.frame(intercepts = intercepts,
                        slopes = slopes,
