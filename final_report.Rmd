@@ -3,11 +3,12 @@ title: "Final Report"
 author: "Hazel Ethier and Eva Gerstle"
 date: "3/27/2018"
 output:
-  html_document:
-    df_print: paged
-    toc: yes
+  word_document:
   pdf_document:
     number_sections: yes
+    toc: yes
+  html_document:
+    df_print: paged
     toc: yes
 fontsize: 11pt
 ---
@@ -60,6 +61,9 @@ project_data <- project_data %>%
   select(PERNUM, SERIAL, Northeast, Midwest, South, West, AGE, RACE, SSMC, FARM, CINETHH, MULTGEN, HHINCOME, NCHLT5, white, black, nativeamerican, asian, otherrace, twoormore, NUMPREC)
 str(project_data, give.attr = FALSE)
 ```
+
+
+
 #Introduction
 
 In our final project, we chose to analyze a type of household that makes up about 1% of all households in the United States.^[1] Intergenerational households, defined as households with three or more generations living under the same roof, are a diverse and complicated subset of our population. We began our research with two distinct interests. Our first model seeks to predicate the odds of a person living in an intergenerational household given a set of demographic attributes. Our second model focused on trends within intergenerational households. 
