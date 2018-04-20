@@ -3,11 +3,11 @@ title: "Final Report"
 author: "Hazel Ethier and Eva Gerstle"
 date: "3/27/2018"
 output:
-  html_document:
-    df_print: paged
-    toc: yes
   pdf_document:
     number_sections: yes
+    toc: yes
+  html_document:
+    df_print: paged
     toc: yes
 fontsize: 11pt
 ---
@@ -122,8 +122,6 @@ For an increase of \$100,000 of total household income, on average, the family i
 
 Based on our multiple logistic regression with 3156472 degrees of freedom, we obtain a high z-value of -25.591 and p-value of <0.001 for the coefficient for household income. Since the p-value is below our alpha level of 0.05, we can reject our null hypothesis that there is no relationship between income and odds of a household being intergenerational. This test provides evidence that there is a statistically significant relationship between household income and odds of a household being intergenerational. 
 
-
-##HAZEL LOOK AT THIS GRAPH_ I THINK IT MUST BE BECAUSE OF ALL THE CONFOUNDING VARIABLES- SHOULD WE LEAVE IT OUT??
 ```{r, echo=FALSE}
 xyplot(log(fitted.values(primarymodel)/(1-fitted.values(primarymodel)))~HHINCOME, 
        data=project_data, type=c("l"),ylab="log odds")
