@@ -154,8 +154,11 @@ Out in the Western States intergenerational households with 3 people have a pred
 ```{r, echo=FALSE, warning=FALSE}
 tertiarydf= data.frame(Region = c("Northeast", "West", "Midwest", "South"), Income3people = c(50346.082, 42643.982,37730.064,38528.84))
 incomeplot <- ggplot(tertiarydf, aes(x=Region, y=Income3people, fill = Region)) + geom_bar(stat="identity") + guides(fill =FALSE)
+incomeplot
 
+```
 
+```{r,echo=FALSE}
 intercepts <- c(coef(modeltertiary)["(Intercept)"],
                 coef(modeltertiary)["(Intercept)"] + coef(modeltertiary)["West"],
                 coef(modeltertiary)["(Intercept)"] + coef(modeltertiary)["Midwest"],
