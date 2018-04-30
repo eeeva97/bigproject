@@ -115,4 +115,4 @@ NCHLT5 is a quantitative variable that gives the number of children age 4 and un
 CINETHH is a binary variable that indicates whether the household has internet access.Internet access reports whether the household has access to the internet. In 2016, 2,687,693 households have internet access or 85% of households surveyed.
 
 Northeast, Midwest, South, and West are all binary variables that indicate the four United States regions as divided by the census. The survey finds 558073 people in the Northeast or 17.6%. The survey finds 21.5% of people in the Midwest. The South has 37.3% of people, while the West has 23.4% of people. 
->>>>>>> f0d6475c627c12195e96a29843a7747e110a635c
+
