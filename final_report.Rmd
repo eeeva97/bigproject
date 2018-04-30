@@ -1,5 +1,5 @@
 ---
-title: "Final Report"
+title: "Intergenerational Households Final Report"
 author: "Hazel Ethier and Eva Gerstle"
 date: "3/27/2018"
 output:
@@ -66,19 +66,21 @@ str(project_data, give.attr = FALSE)
 
 #Introduction
 
-In our final project, we chose to analyze a type of household that makes up about 1% of all households in the United States.^[1] Intergenerational households, defined as households with three or more generations living under the same roof, are a diverse and complicated subset of our population. We began our research with two distinct interests. Our first model seeks to predicate the odds of a person living in an intergenerational household given a set of demographic attributes. Our second model focused on trends within intergenerational households. 
+In our final project, we chose to analyze a type of household that makes up about 1% of all households in the United States.[^1] Intergenerational households, defined as households with three or more generations living under the same roof, are a diverse and complicated subset of our population. We began our research with two distinct interests. Our first model seeks to predicate the odds of a person living in an intergenerational household given a set of demographic attributes. Our second model focused on trends within intergenerational households. 
 
-We sought to answer two questions with our first model. Our primary question revolved around region that the household lives within. The United States Census divides the country into 4 regions: Northeast (Connecticut, Maine, Massachusetts, New Hampshire, Rhode Island, Vermont, New Jersey, New York, Pennsylvania), Midwest (Illinois, Indiana, Michigan, Ohio, Wisconsin, Iowa, Kansas, Minnesota, Missouri, Nebraska, North Dakota, South Dakota), South (Delaware, District of Columbia, Florida, Georgia, Maryland, North Carolina, South Carolina, Virginia, West Virginia, Alabama, Kentucky, Mississippi, Tennessee, Arkansas, Louisiana, Oklahoma, Texas), and West (Arizona, Colorado, Idaho, Montana, Nevada, New Mexico, Utah, Wyoming, Alaska, California, Hawaii, Oregon, Washington). 2 We set out to assess whether the odds of living in a intergenerational household varied by region, adjusting for various variables. Our null hypothesis was that region had no effect on the odds of being an intergenerational household. We found that different regions do have statistically different odds of living in intergenerational households. 
+We sought to answer two questions with our first model. Our primary question revolved around region that the household lives within. The United States Census divides the country into 4 regions: Northeast (Connecticut, Maine, Massachusetts, New Hampshire, Rhode Island, Vermont, New Jersey, New York, Pennsylvania), Midwest (Illinois, Indiana, Michigan, Ohio, Wisconsin, Iowa, Kansas, Minnesota, Missouri, Nebraska, North Dakota, South Dakota), South (Delaware, District of Columbia, Florida, Georgia, Maryland, North Carolina, South Carolina, Virginia, West Virginia, Alabama, Kentucky, Mississippi, Tennessee, Arkansas, Louisiana, Oklahoma, Texas), and West (Arizona, Colorado, Idaho, Montana, Nevada, New Mexico, Utah, Wyoming, Alaska, California, Hawaii, Oregon, Washington). [^2] We set out to assess whether the odds of living in a intergenerational household varied by region, adjusting for various variables. Our null hypothesis was that region had no effect on the odds of being an intergenerational household. We found that different regions do have statistically different odds of living in intergenerational households. 
  
 Our second question examined the relationship between income and odds of living in an intergenerational household. We used total household income as our main explanatory variable, adjusted for various confounding variables, and found the odds of living in an intergenerational household as our response variable. Our null hypothesis was that income had no impact on the odds of being an intergenerational household. We found that there is a statistically significant, negative relationship between income and odds of living an intergenerational household, but the relationship between income and logit(odds) was quite shallow: large changes in income only resulted in small changes in odds of being an intergenerational household.
 
-Our third question looks within intergenerational households, a subset of the United States Population about 30 million in number.1 Within these intergenerational households, we sought to assess if there were differences in household incomes in different regions of the country. Using the same Census region as above, we utilized region as a explanatory variable predicting income of the intergenerational household. Our null hypothesis was that region was not correlated with income within intergenerational households. Our model concludes that intergenerational households living in different regions of the United States, have statistically different incomes.
+Our third question looks within intergenerational households, a subset of the United States Population about 30 million in number. [^1] Within these intergenerational households, we sought to assess if there were differences in household incomes in different regions of the country. Using the same Census region as above, we utilized region as a explanatory variable predicting income of the intergenerational household. Our null hypothesis was that region was not correlated with income within intergenerational households. Our model concludes that intergenerational households living in different regions of the United States, have statistically different incomes.
 
 #Methods
 
 We collected our data from the American Community Survey 2016. This is a weighted, 1-in-100 national random sample of the US population. From the data, we created two different models, a multiple logistic regression with odds of being an intergenerational household as a binary response variable (primary model) and a multiple linear regression from the data only consisting of intergenerational households with household income as the quantitative response variable. 
 
-In our primary and tertiary models, we included the number of people living the household, the household income (in dollars), age of head of household (in years), whether the house is on a farm, number of children under 5, region (Northeast, West, Midwest, and South), and race of the head of household (White, Black, Native American, Asian, a different race, and two or more races). In addition, in the primary model we included the interaction between number of people and number of children under 5 and in the tertiary model we included the interaction between the number of people and region, race of head of household and region, computer access (yes or no), and same sex married couple (yes or no). 
+In our primary and tertiary models, we included the number of people living the household, the household income (in dollars), age of head of household (in years), whether the house is on a farm, number of children under 5, region (Northeast, South, West, Midwest), and race of the head of household (White, Black, Native American, Asian, a different race, and two or more races). In addition, in the primary model we included the interaction between number of people and number of children under 5 and in the tertiary model we included the interaction between the number of people and region, race of head of household and region, computer access (yes or no), and same sex married couple (yes or no). 
+
+![](http://thempfa.org/wp-content/uploads/2017/11/us-regions-and-divisions-map-region.png){ width=10in }
 
 In order to determine the more effective variables to include in our primary model, we ran nested likelihood tests for each variable and interaction terms. We ran a likelihood test to determine if the interaction between number of people living in the house and number of children under five was an effective coefficient in the model. Based on the nested likelihood ratio test with 1 degree of freedom, we found a large $X^2$ value of 1420.5 and a small p-value of <0.001. Because of this p-value (below the alpha level of 0.05), we can reject our null hypothesis that we only need the reduced model. This test provides evidence that it is important to include the inaction between number of people living in the house and number of children under five in our model.
 
@@ -100,7 +102,8 @@ exp(coef(primarymodel))
 Primary and Secondary Model: logit(multigen households) = -6.556 + 0.01617West - 0.2607Midwest + 0.1161South + 0.01753Age - 0.0000006131HHIncome + 0.8208NUMPREC + 0.3983NCHLT5 - 0.9717Farm + 0.7618black + 0.5277nativeamerican +0.5699asian +0.2464otherrace +0.4827twoormore - 0.175NUMPREC*NCHLT5
 
 ```{r, echo=FALSE}
-oddsdf <- data.frame(Region = c("Northeast", "West", "Midwest", "South"), Probability = c(.1418,.144265,.1094,.1594), Odds = c(0.00142, .001445, .001095, .001597), OddsRatio = c("NA",  1.0163,0.7705,1.123))
+oddsdf <- data.frame(Region = c("Northeast", "West", "Midwest", "South"),
+    Probability =c(.001418,.00144265,.001094,.001594), Odds = c(0.00142, .001445, .001095, .001597), OddsRatio = c("NA",  1.0163,0.7705,1.123))
 probplot <- ggplot(data=oddsdf,aes(y=Probability, x= Region, fill=Region))+ geom_bar(stat= "identity") + guides(fill=FALSE)
 probplot
 
@@ -132,11 +135,12 @@ xyplot(log(fitted.values(primarymodel)/(1-fitted.values(primarymodel)))~HHINCOME
 ```
 
 ##Tertiary Question
-```{r, include=FALSE}
+```{r, echo=FALSE}
 tertiarydata <- project_data %>%
   filter(MULTGEN == 1)
 
 modeltertiary <- lm(HHINCOME~NUMPREC + Midwest*NUMPREC + South*NUMPREC + West*NUMPREC + AGE + FARM + NCHLT5 + black*NUMPREC + nativeamerican*NUMPREC + asian*NUMPREC + otherrace*NUMPREC + twoormore*NUMPREC + CINETHH + SSMC, data=tertiarydata)
+
 summary(modeltertiary)
 
 ```
@@ -190,3 +194,5 @@ For all three of these questions, we found a statistically significant relations
 In our models, we adjusted for many different variables include race of the head of household and number of people in the house. However, there are numerous other variables that we did not use in our model that could also influences odds of being an intergenerational house or income of intergenerational households. Some of these statistics were not provided in the cenus we used (such as religion). We also want to emphasize that, because our data is observational, and not from an experiment, we can not prove a causation between region or household income and odds of being an intergenerational household. 
 
 Intergenerational households are a unique subset our culture that has yet to succumb to the image of modern nuclear family that has spread across America. It is both interesting and informative to understand the different factors associated with families who choose to resist this social norm. Our investigation into these factors describes the patterns surrounding intergenerational families both from an economic and geographical view point.
+
+
