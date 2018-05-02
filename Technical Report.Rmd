@@ -75,6 +75,10 @@ model2<- glm(MULTGEN ~ West + Midwest + South + AGE + HHINCOME + NUMPREC + NCHLT
 
 lrtest(model2, primarymodel)
 ```
+```{r}
+primarymodel2<-glm(MULTGEN ~ AGE + HHINCOME + NUMPREC + NCHLT5 + NUMPREC*NCHLT5 + FARM + black + nativeamerican + asian +otherrace + twoormore , family=binomial, data = project_data)
+lrtest(primarymodel2, primarymodel)
+```
 
 ##Secondary Question
 
