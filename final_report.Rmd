@@ -1,12 +1,12 @@
 ---
 title: "Intergenerational Households Final Report"
 author: "Hazel Ethier and Eva Gerstle"
-date: "3/27/2018"
+date: "5/8/2018"
 output:
-  word_document:
   pdf_document:
     number_sections: yes
     toc: yes
+  word_document:
   html_document:
     df_print: paged
     toc: yes
@@ -120,7 +120,7 @@ A household in the Midwest has, on average, 0.7705 times the odds of being inter
 
 A household in the South has, on average, 1.123 times the odds of being intergenerational than a household in the Northeast, controlling for the variables above.
 
-Our multiple logistic regression with 3156472 degrees of freedom, gives us high z-values for the categorical variable region of 2.126, -30.796, and 16.388 and low p-values of 0.0335, <.001, and <.001 for West, Midwest, and South, respectively. Based on these low p-values (below our chosen alpha level of 0.05), we can reject the null hypothesis that there is no relationship between region and odds of being an intergenerational household. We have evidence that there is a statistically significant relationship between region and odds of an household being intergenerational, controlling for the set variables. 
+Our multiple logistic regression with 3156472 degrees of freedom, gives us high z-values for the categorical variable region of 2.126, -30.796, and 16.388 and low p-values of 0.0335, <.001, and <.001 for West, Midwest, and South, respectively. In addition, from a nested likelihood test for region with 3 degrees of freedom, we obtain a chi-square value of 2825.4 and a corresponding p-value of <.001. Based on these low p-values (below our chosen alpha level of 0.05), we can reject the null hypothesis that there is no relationship between region and odds of being an intergenerational household. We have evidence that there is a statistically significant relationship between region and odds of an household being intergenerational, controlling for the set variables. 
 
 ##Secondary Question
 
@@ -128,7 +128,10 @@ For every increase of \$1 in total household income, on average, we see a change
 
 For an increase of \$100,000 of total household income, on average, the family is 6% less likely to be intergenerational compared to a family with who earns \$100,000 less, holding age, region, number of people, number of children under 5, living on a farm, race, and the interaction between number of people and number of people under 5 constant. 
 
+
 Based on our multiple logistic regression with 3156472 degrees of freedom, we obtain a high z-value of -25.591 and p-value of <0.001 for the coefficient for household income. Since the p-value is below our alpha level of 0.05, we can reject our null hypothesis that there is no relationship between income and odds of a household being intergenerational. This test provides evidence that there is a statistically significant relationship between household income and odds of a household being intergenerational. 
+
+Based on our multiple logistic regression with 3156472 degrees of freedom, we obtain a high z-value of -25.591 and p-value of <0.001 for the coefficient for household income. After running a likelihood test with 1 degree of freedom, we found a chi-square value of 3116.1 and p-value of <.001. Since the p-values from both tests are below our alpha level of 0.05, we can reject our null hypothesis that there is no relationship between income and odds of a household being intergenerational. This test provides evidence that there is a statistically significant relationship between household income and odds of a household being intergenerational. 
 
 ##Tertiary Question
 ```{r, include=FALSE}
