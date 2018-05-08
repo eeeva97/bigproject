@@ -68,7 +68,7 @@ str(project_data, give.attr = FALSE)
 
 #Introduction
 
-In our final project, we chose to analyze a type of household that makes up about 1% of all households in the United States. [^1] Intergenerational households, defined as households with three or more generations living under the same roof, are a diverse and complicated subset of our population. Intergenerational households have different needs than traditional households, particually in terms of healthcare and family programs.  We hope our study provides an insight to this unconventional family form. We began our research with two distinct interests. Our first model seeks to predicate the odds of a person living in an intergenerational household given a set of demographic attributes. Our second model focused on trends within intergenerational households. 
+In our final project, we chose to analyze a type of household that makes up about 1% of all households in the United States. [^1] Intergenerational households, defined as households with three or more generations living under the same roof, are a diverse and complicated subset of our population. Intergenerational households have different needs than traditional households, particularly in terms of healthcare and family programs.  We hope our study provides an insight to this unconventional family form. We began our research with two distinct interests. Our first model seeks to predicate the odds of a person living in an intergenerational household given a set of demographic attributes. Our second model focused on trends within intergenerational households. 
 
 We sought to answer two questions with our first model. Our primary question revolved around region that the household lives within. The United States Census divides the country into 4 regions, Northeast, West, Midwest, South. [^2] Our second question examined the relationship between income and odds of living in an intergenerational household.  
 
@@ -80,13 +80,13 @@ We collected our data from the American Community Survey 2016. This is a weighte
 
 In our primary and tertiary models, we included the number of people living the household, the household income (in dollars), age of head of household (in years), whether the house is on a farm, number of children under 5, region (Northeast, South, West, Midwest), and race of the head of household (White, Black, Native American, Asian, a different race, and two or more races). In addition, in the primary model we included the interaction between number of people and number of children under 5 and in the tertiary model we included the interaction between the number of people and region, race of head of household and region, computer access (yes or no), and same sex married couple (yes or no). 
 
-![](http://thempfa.org/wp-content/uploads/2017/11/us-regions-and-divisions-map-region.png){ width=10in }
+![](http://thempfa.org/wp-content/uploads/2017/11/us-regions-and-divisions-map-region.png){ width=2in }
 
 In order to determine the more effective variables to include in our primary model, we ran likelihood tests for each variable and interaction terms. We ran a likelihood test to determine if the interaction between number of people living in the house and number of children under five was an effective coefficient in the model. Based on the nested likelihood ratio test with 1 degree of freedom, we found a large $X^2$ value of 1420.5 and a small p-value of <0.001. Because of this p-value (below the alpha level of 0.05), we can reject our null hypothesis that we only need the reduced model. This test provides evidence that it is important to include the inaction between number of people living in the house and number of children under five in our model.
 
 For the tertiary model, we removed our variables one at a time, and ran various nested F tests, finding that each time, the full model the tertiary model with the confounding variables included was needed.  Thus we interpreted our variables adjusting for race, internet access, same-sex relationship status, age, number of children under 5, and farm status.
 
-Next, we checked that both of our models met the required assumptions and conditions for performing regression analysis. 
+Next, we checked to see if both of our models met the required assumptions and conditions for performing regression analysis. While our primary model met the conditions, our tertiary model does not meet the condition of linearity. However, we preceded with caution.
 
 #Results
 
