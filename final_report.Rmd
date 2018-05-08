@@ -11,6 +11,7 @@ output:
     df_print: paged
     toc: yes
 fontsize: 11pt
+
 ---
 
 ```{r include=FALSE, message=FALSE}
@@ -24,6 +25,7 @@ library(kableExtra)
 library(stargazer)
 library(lmtest)
 setwd("~/Desktop")
+options(knitr.table.format = "latex")
 
 project_ddi <- read_ipums_ddi("usa_00005.xml")
 project_data <- read_ipums_micro(project_ddi, verbose = FALSE)
@@ -66,7 +68,7 @@ str(project_data, give.attr = FALSE)
 
 #Introduction
 
-In our final project, we chose to analyze a type of household that makes up about 1% of all households in the United States.[^1] Intergenerational households, defined as households with three or more generations living under the same roof, are a diverse and complicated subset of our population. We began our research with two distinct interests. Our first model seeks to predicate the odds of a person living in an intergenerational household given a set of demographic attributes. Our second model focused on trends within intergenerational households. 
+In our final project, we chose to analyze a type of household that makes up about 1% of all households in the United States. [^1] Intergenerational households, defined as households with three or more generations living under the same roof, are a diverse and complicated subset of our population. Intergenerational households have different needs than traditional households, particually in terms of healthcare and family programs.  We hope our study provides an insight to this unconventional family form. We began our research with two distinct interests. Our first model seeks to predicate the odds of a person living in an intergenerational household given a set of demographic attributes. Our second model focused on trends within intergenerational households. 
 
 We sought to answer two questions with our first model. Our primary question revolved around region that the household lives within. The United States Census divides the country into 4 regions: Northeast (Connecticut, Maine, Massachusetts, New Hampshire, Rhode Island, Vermont, New Jersey, New York, Pennsylvania), Midwest (Illinois, Indiana, Michigan, Ohio, Wisconsin, Iowa, Kansas, Minnesota, Missouri, Nebraska, North Dakota, South Dakota), South (Delaware, District of Columbia, Florida, Georgia, Maryland, North Carolina, South Carolina, Virginia, West Virginia, Alabama, Kentucky, Mississippi, Tennessee, Arkansas, Louisiana, Oklahoma, Texas), and West (Arizona, Colorado, Idaho, Montana, Nevada, New Mexico, Utah, Wyoming, Alaska, California, Hawaii, Oregon, Washington). [^2] We set out to assess whether the odds of living in a intergenerational household varied by region, adjusting for various variables. Our null hypothesis was that region had no effect on the odds of being an intergenerational household. We found that different regions do have statistically different odds of living in intergenerational households. 
  
@@ -101,16 +103,15 @@ exp(coef(primarymodel))
 ```
 Primary and Secondary Model: logit(multigen households) = -6.556 + 0.01617West - 0.2607Midwest + 0.1161South + 0.01753Age - 0.0000006131HHIncome + 0.8208NUMPREC + 0.3983NCHLT5 - 0.9717Farm + 0.7618black + 0.5277nativeamerican +0.5699asian +0.2464otherrace +0.4827twoormore - 0.175NUMPREC*NCHLT5
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, probplot, fig.height= 2, fig.width= 3}
 oddsdf <- data.frame(Region = c("Northeast", "West", "Midwest", "South"),
     Probability =c(.001418,.00144265,.001094,.001594), Odds = c(0.00142, .001445, .001095, .001597), OddsRatio = c("NA",  1.0163,0.7705,1.123))
 probplot <- ggplot(data=oddsdf,aes(y=Probability, x= Region, fill=Region))+ geom_bar(stat= "identity") + guides(fill=FALSE)
 probplot
 
-kable(oddsdf, "html") %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
-  
+kable(oddsdf, format="latex") 
 
+  
 ```
 
 A household in the West has, on average, 1.0163 times the odds of being intergenerational than a household in the Northeast, controlling for the variables above.
@@ -129,13 +130,8 @@ For an increase of \$100,000 of total household income, on average, the family i
 
 Based on our multiple logistic regression with 3156472 degrees of freedom, we obtain a high z-value of -25.591 and p-value of <0.001 for the coefficient for household income. Since the p-value is below our alpha level of 0.05, we can reject our null hypothesis that there is no relationship between income and odds of a household being intergenerational. This test provides evidence that there is a statistically significant relationship between household income and odds of a household being intergenerational. 
 
-```{r, echo=FALSE}
-xyplot(log(fitted.values(primarymodel)/(1-fitted.values(primarymodel)))~HHINCOME, 
-       data=project_data, type=c("l"),ylab="log odds")
-```
-
 ##Tertiary Question
-```{r, echo=FALSE}
+```{r, include=FALSE}
 tertiarydata <- project_data %>%
   filter(MULTGEN == 1)
 
@@ -155,14 +151,14 @@ In the South, for intergenerational households with 3 people, the predicted annu
 
 Out in the Western States intergenerational households with 3 people have a predicated annual household income of \$42643.982, With each additional household member, income is predicated to raise by \$7931.779, adjusted for the variables above. 
 
-```{r, echo=FALSE, warning=FALSE}
+```{r, echo=FALSE, warning=FALSE,incomeplot, fig.height= 2, fig.width= 3}
 tertiarydf= data.frame(Region = c("Northeast", "West", "Midwest", "South"), Income3people = c(50346.082, 42643.982,37730.064,38528.84))
 incomeplot <- ggplot(tertiarydf, aes(x=Region, y=Income3people, fill = Region)) + geom_bar(stat="identity") + guides(fill =FALSE)
 incomeplot
 
 ```
 
-```{r,echo=FALSE}
+```{r,echo=FALSE, incomeplot2, fig.height= 3, fig.width= 4}
 intercepts <- c(coef(modeltertiary)["(Intercept)"],
                 coef(modeltertiary)["(Intercept)"] + coef(modeltertiary)["West"],
                 coef(modeltertiary)["(Intercept)"] + coef(modeltertiary)["Midwest"],
@@ -195,4 +191,7 @@ In our models, we adjusted for many different variables include race of the head
 
 Intergenerational households are a unique subset our culture that has yet to succumb to the image of modern nuclear family that has spread across America. It is both interesting and informative to understand the different factors associated with families who choose to resist this social norm. Our investigation into these factors describes the patterns surrounding intergenerational families both from an economic and geographical view point.
 
+[^1]: http://www.pewresearch.org/fact-tank/2018/04/05/a-record-64-million-americans-live-in-multigenerational-households/
+
+[^2]: https://www.census.gov/geo/reference/webatlas/regions.html
 
