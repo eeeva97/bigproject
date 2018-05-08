@@ -1,5 +1,7 @@
 ---
 title: "Final Project Data Appendix"
+author: "Hazel Ethier and Eva Gerstle"
+date: "3/23/2018"
 output: html_document
 ---
 
@@ -56,26 +58,47 @@ str(project_data, give.attr = FALSE)
 There are 3156487 observations of 22 variables.
 
 Pernum is the person number in the sample unit.
+
 Serial is the household serial number.
+
 Northeast indicates if the household is in the Northeast.
+
 Midwest indictates if the household is in the Midwest.
+
 South indictates if the household is in the South.
+
 West indictates if the household is in the West.
+
 Race gives a numerical code for the race of the head of household.
+
 White indicates if the head of household is white.
+
 Black indicates if the head of household is black. 
-Nativeamerican indicates if the head of household is native american. 
+
+Nativeamerican indicates if the head of household is native american.
+
 Chinese indicates if the head of household is chinese. 
+
 Japanese indicates if the head of household is japanese. 
+
 Otherasian indicates if the head of household is not chinese or japanese but still asian. 
+
 Otherrace indicates if the head of household is a race not already specified. 
+
 Twomajor indicates if the head of household is a mix of two races. 
-Threeormore indicates if the head of household is a mix of three or more races.    
+
+Threeormore indicates if the head of household is a mix of three or more races.  
+
 SSMC reports whether the head of household and spouse are a same-sex married couple.
+
 FARM identifies farm households. 
+
 CINETHH indicates whether the household has internet access.
+
 MULTGEN indicates whether there are 3 or more generations living in the same household.
+
 HHINCOME gives the total household income.
+
 NCHLT5 give the number of children age 4 and under residing in the household.
 
 ```{r}
