@@ -162,7 +162,7 @@ incomeplot
 
 ```
 
-```{r,echo=FALSE, incomeplot2, fig.height= 3, fig.width= 4}
+```{r,echo=FALSE, incomeplot2, fig.height= 3, fig.width= 4, message=FALSE}}
 intercepts <- c(coef(modeltertiary)["(Intercept)"],
                 coef(modeltertiary)["(Intercept)"] + coef(modeltertiary)["West"],
                 coef(modeltertiary)["(Intercept)"] + coef(modeltertiary)["Midwest"],

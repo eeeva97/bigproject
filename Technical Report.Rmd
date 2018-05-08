@@ -55,7 +55,8 @@ str(project_data, give.attr = FALSE)
 ```
 #Introduction
 
-  
+The United States Census divides the country into 4 regions: Northeast (Connecticut, Maine, Massachusetts, New Hampshire, Rhode Island, Vermont, New Jersey, New York, Pennsylvania), Midwest (Illinois, Indiana, Michigan, Ohio, Wisconsin, Iowa, Kansas, Minnesota, Missouri, Nebraska, North Dakota, South Dakota), South (Delaware, District of Columbia, Florida, Georgia, Maryland, North Carolina, South Carolina, Virginia, West Virginia, Alabama, Kentucky, Mississippi, Tennessee, Arkansas, Louisiana, Oklahoma, Texas), and West (Arizona, Colorado, Idaho, Montana, Nevada, New Mexico, Utah, Wyoming, Alaska, California, Hawaii, Oregon, Washington).
+
 #Results
 
 ##Primary Question 
@@ -75,7 +76,6 @@ Since our data is from the American Community Survey on IPUMS USA which uses a r
 \textbf{Linearity:}
 
 Our data consists of a binary response variable of whether a household is intergenerational and a categorical explanatory variable that we made into three indicator variables. Since we can connect a straight line between any two binary variables, our data is linear. 
-
 
 ```{r}
 primarymodel <- glm(MULTGEN ~ West + Midwest + South + AGE + HHINCOME + NUMPREC + NCHLT5 + NUMPREC*NCHLT5 + FARM + black + nativeamerican + asian +otherrace + twoormore , family=binomial, data = project_data)
@@ -112,6 +112,7 @@ Since our data is from the American Community Survey on IPUMS USA which uses a r
 
 Insert graphic here of income vs. intergenerational 
 
+<<<<<<< HEAD
 ```{r}
 #Likelihood Test for Income
 modelincome<-glm(MULTGEN ~ West + Midwest + South + AGE + NUMPREC + NCHLT5 + NUMPREC*NCHLT5 + FARM + black + nativeamerican + asian +otherrace + twoormore , family=binomial, data = project_data)
@@ -146,19 +147,21 @@ tally(~MULTGEN, data=project_data)
 
 The United States Census divides the country into 4 regions: Northeast (Connecticut, Maine, Massachusetts, New Hampshire, Rhode Island, Vermont, New Jersey, New York, Pennsylvania), Midwest (Illinois, Indiana, Michigan, Ohio, Wisconsin, Iowa, Kansas, Minnesota, Missouri, Nebraska, North Dakota, South Dakota), South (Delaware, District of Columbia, Florida, Georgia, Maryland, North Carolina, South Carolina, Virginia, West Virginia, Alabama, Kentucky, Mississippi, Tennessee, Arkansas, Louisiana, Oklahoma, Texas), and West (Arizona, Colorado, Idaho, Montana, Nevada, New Mexico, Utah, Wyoming, Alaska, California, Hawaii, Oregon, Washington). [^2]
 
-```{r}
+```{r, message=FALSE}
 plot(modeltertiary, which=1)
 plot(modeltertiary, which=2)
 ```
 
-\textbf{Linearity:}
-
-\textbf{Normality:}
-
-\textbf{Independence:}
-
-\textbf{Zero Mean:}
-
-\textbf{Equal Variance:}
 
 #Discussion
+
+\textbf{Linearity:} There is mostly random scatters in the fitted residuals plot (and no obvious curvature) so the data appears linear enough.
+
+\textbf{Independence:} Since our data is from the American Community Survey on IPUMS USA which uses a random sampling method and has a large sample size, we do not have any reason to think that the household income of one household affects the household income of another household.
+
+\textbf{Normality:} Unfortunately, our data does not meet the normality condition, as the points curve off of the Normal Q-Q plot.
+
+\textbf{Zero Mean:} In the fitted residuals plot, the residuals are equally scattered above and below the mean therefore I can conclude that the residuals have a mean of zero. 
+
+\textbf{Equal Variance:}The residuals in the fitted residuals plot seem to have an equal width and therefore a uniform standard deviation. There does not appear to be any thickening.
+
