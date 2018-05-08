@@ -1,7 +1,7 @@
 ---
 title: "Technical Report"
 author: "Hazel Ethier and Eva Gerstle"
-date: "4/19/2018"
+date: "5/8/2018"
 output: pdf_document
 ---
 
@@ -60,6 +60,23 @@ str(project_data, give.attr = FALSE)
 
 ##Primary Question 
 
+###Assumptions and Conditions:
+
+
+
+\textbf{Randomization:}
+
+We got our data from the American Community Survey on IPUMS USA. This survey is a 1-in-100 national random sample of the population. Because the sampling method is randomized, this condition is met. 
+
+\textbf{Independence:}
+
+Since our data is from the American Community Survey on IPUMS USA which uses a random sampling method and has a large sample size, we do not have any reason to think that whether one household is intergenerational would impact if another household is intergenerational. 
+
+\textbf{Linearity:}
+
+Our data consists of a binary response variable of whether a household is intergenerational and a categorical explanatory variable that we made into three indicator variables. Since we can connect a straight line between any two binary variables, our data is linear. 
+
+
 ```{r}
 primarymodel <- glm(MULTGEN ~ West + Midwest + South + AGE + HHINCOME + NUMPREC + NCHLT5 + NUMPREC*NCHLT5 + FARM + black + nativeamerican + asian +otherrace + twoormore , family=binomial, data = project_data)
 summary(primarymodel)
@@ -75,10 +92,35 @@ model2<- glm(MULTGEN ~ West + Midwest + South + AGE + HHINCOME + NUMPREC + NCHLT
 
 lrtest(model2, primarymodel)
 ```
+```{r}
+#Nested Likelihood Test for Region
+primarymodel2<-glm(MULTGEN ~ AGE + HHINCOME + NUMPREC + NCHLT5 + NUMPREC*NCHLT5 + FARM + black + nativeamerican + asian +otherrace + twoormore , family=binomial, data = project_data)
+lrtest(primarymodel2, primarymodel)
+```
 
 ##Secondary Question
 
+\textbf{Randomization:}
+
+We got our data from the American Community Survey on IPUMS USA. This survey is a 1-in-100 national random sample of the population. Because the sampling method is randomized, this condition is met. 
+
+\textbf{Independence:}
+
+Since our data is from the American Community Survey on IPUMS USA which uses a random sampling method and has a large sample size, we do not have any reason to think that whether one household is intergenerational would impact if another household is intergenerational. 
+
+\textbf{Linearity:}
+
+Insert graphic here of income vs. intergenerational 
+
+```{r}
+#Likelihood Test for Income
+modelincome<-glm(MULTGEN ~ West + Midwest + South + AGE + NUMPREC + NCHLT5 + NUMPREC*NCHLT5 + FARM + black + nativeamerican + asian +otherrace + twoormore , family=binomial, data = project_data)
+lrtest(modelincome, primarymodel)
+
+```
+
 ##Tertiary Question
+
 ```{r, echo=FALSE}
 tertiarydata <- project_data %>%
   filter(MULTGEN == 1)
@@ -96,10 +138,27 @@ modeltertiarysmall <- lm(HHINCOME~NUMPREC + Midwest*NUMPREC + South*NUMPREC + We
 anova(modeltertiarysmall, modeltertiary)
 summary(modeltertiarysmall)
 summary(modeltertiary)
-
 ```
 ```{r}
 tally(~MULTGEN, data=project_data)
 ```
 
+
 The United States Census divides the country into 4 regions: Northeast (Connecticut, Maine, Massachusetts, New Hampshire, Rhode Island, Vermont, New Jersey, New York, Pennsylvania), Midwest (Illinois, Indiana, Michigan, Ohio, Wisconsin, Iowa, Kansas, Minnesota, Missouri, Nebraska, North Dakota, South Dakota), South (Delaware, District of Columbia, Florida, Georgia, Maryland, North Carolina, South Carolina, Virginia, West Virginia, Alabama, Kentucky, Mississippi, Tennessee, Arkansas, Louisiana, Oklahoma, Texas), and West (Arizona, Colorado, Idaho, Montana, Nevada, New Mexico, Utah, Wyoming, Alaska, California, Hawaii, Oregon, Washington). [^2]
+
+```{r}
+plot(modeltertiary, which=1)
+plot(modeltertiary, which=2)
+```
+
+\textbf{Linearity:}
+
+\textbf{Normality:}
+
+\textbf{Independence:}
+
+\textbf{Zero Mean:}
+
+\textbf{Equal Variance:}
+
+#Discussion
