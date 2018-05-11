@@ -91,10 +91,6 @@ The United States Census divides the country into 4 regions: Northeast (Connecti
 
 ##Primary Question 
 
-###Assumptions and Conditions:
-
-
-=======
 ###Assumptions and Conditions
 Primary and Secondary Model: logit(multigen households) = -6.556 + 0.01617West - 0.2607Midwest + 0.1161South + 0.01753Age - 0.0000006131HHIncome + 0.8208NUMPREC + 0.3983NCHLT5 - 0.9717Farm + 0.7618black + 0.5277nativeamerican +0.5699asian +0.2464otherrace +0.4827twoormore - 0.175NUMPREC*NCHLT5
 
