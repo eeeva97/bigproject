@@ -53,6 +53,7 @@ project_data <- project_data %>%
   select(PERNUM, SERIAL, Northeast, Midwest, South, West, AGE, RACE, SSMC, FARM, CINETHH, MULTGEN, HHINCOME, NCHLT5, white, black, nativeamerican, asian, otherrace, twoormore, NUMPREC)
 str(project_data, give.attr = FALSE)
 ```
+
 #Variable Analysis
 ```{r}
 tally(~Northeast, data=project_data)
@@ -93,6 +94,10 @@ The United States Census divides the country into 4 regions: Northeast (Connecti
 ###Assumptions and Conditions:
 
 
+=======
+###Assumptions and Conditions
+Primary and Secondary Model: logit(multigen households) = -6.556 + 0.01617West - 0.2607Midwest + 0.1161South + 0.01753Age - 0.0000006131HHIncome + 0.8208NUMPREC + 0.3983NCHLT5 - 0.9717Farm + 0.7618black + 0.5277nativeamerican +0.5699asian +0.2464otherrace +0.4827twoormore - 0.175NUMPREC*NCHLT5
+
 
 \textbf{Randomization:}
 
@@ -127,7 +132,11 @@ primarymodel2<-glm(MULTGEN ~ AGE + HHINCOME + NUMPREC + NCHLT5 + NUMPREC*NCHLT5 
 lrtest(primarymodel2, primarymodel)
 ```
 
+We ran a likelihood test to determine if the interaction between number of people living in the house and number of children under five was an effective coefficient in the model. Based on the nested likelihood ratio test with 1 degree of freedom, we found a large $X^2$ value of 1420.5 and a small p-value of <0.001. Because of this p-value (below the alpha level of 0.05), we can reject our null hypothesis that we only need the reduced model. This test provides evidence that it is important to include the inaction between number of people living in the house and number of children under five in our model.
+
 ##Secondary Question
+
+###Assumptions and Conditions
 
 \textbf{Randomization:}
 
@@ -139,9 +148,11 @@ Since our data is from the American Community Survey on IPUMS USA which uses a r
 
 \textbf{Linearity:}
 
-Insert graphic here of income vs. intergenerational 
+We attempted to check this condition but was unable to get the code to work. 
+We proceeded as though linearity was met. 
 
-<<<<<<< HEAD
+
+
 ```{r}
 #Likelihood Test for Income
 modelincome<-glm(MULTGEN ~ West + Midwest + South + AGE + NUMPREC + NCHLT5 + NUMPREC*NCHLT5 + FARM + black + nativeamerican + asian +otherrace + twoormore , family=binomial, data = project_data)
@@ -169,12 +180,25 @@ anova(modeltertiarysmall, modeltertiary)
 summary(modeltertiarysmall)
 summary(modeltertiary)
 ```
+
+Tertiary Model: Income = 19186.126 + 10386.652NumberofPeople - 337.481West + 973.859Midwest + 1808.930South + 313.473Age - 2349.807NCHLT5 + 17981.996Farm - 29092.729Black - 16718.132NativeAmerican + 16572.782Asian - 30921.718OtherRace + 4080.183TwoorMore + 36831.834ComputerAccess + 20820.133SameSexMarriage - 4529.959NumberofPeople:Midwest - 4542.056NumberofPeople:South - 2454.873NumberofPeople:West + 2772.299NumberofPeople:Black - 2023.0572772.299NumberofPeople:NativeAmerican + 2293.328NumberofPeople:Asian + 821.627NumberofPeople:OtherRace + 2.597NumberofPeople:TwoorMore
+
 ```{r}
 tally(~MULTGEN, data=project_data)
 ```
 
 
+
 The United States Census divides the country into 4 regions: Northeast (Connecticut, Maine, Massachusetts, New Hampshire, Rhode Island, Vermont, New Jersey, New York, Pennsylvania), Midwest (Illinois, Indiana, Michigan, Ohio, Wisconsin, Iowa, Kansas, Minnesota, Missouri, Nebraska, North Dakota, South Dakota), South (Delaware, District of Columbia, Florida, Georgia, Maryland, North Carolina, South Carolina, Virginia, West Virginia, Alabama, Kentucky, Mississippi, Tennessee, Arkansas, Louisiana, Oklahoma, Texas), and West (Arizona, Colorado, Idaho, Montana, Nevada, New Mexico, Utah, Wyoming, Alaska, California, Hawaii, Oregon, Washington). [^2]
+
+```{r}
+probplot <- ggplot(data=oddsdf,aes(y=Probability, x= Region, fill=Region))+ geom_bar(stat= "identity") + guides(fill=FALSE)
+probplot
+```
+
+
+###Assumptions and Conditions
+
 
 ```{r, message=FALSE}
 plot(modeltertiary, which=1)
@@ -193,4 +217,6 @@ plot(modeltertiary, which=2)
 \textbf{Zero Mean:} In the fitted residuals plot, the residuals are equally scattered above and below the mean therefore I can conclude that the residuals have a mean of zero. 
 
 \textbf{Equal Variance:}The residuals in the fitted residuals plot seem to have an equal width and therefore a uniform standard deviation. There does not appear to be any thickening.
+
+
 
